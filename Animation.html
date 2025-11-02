@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимация птички</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(180deg, #87CEEB 0%, #98FB98 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .scene {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(180deg, #8B4513 0%, #654321 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .grass {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(180deg, #32CD32 0%, #228B22 100%);
+        }
+
+        .bird {
+            position: absolute;
+            bottom: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bird-body {
+            width: 40px;
+            height: 25px;
+            background: #FF6B6B;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            animation: bodyTilt 0.5s ease-in-out infinite alternate;
+        }
+
+        .bird-head {
+            width: 20px;
+            height: 20px;
+            background: #FF6B6B;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            left: 25px;
+        }
+
+        .bird-eye {
+            width: 6px;
+            height: 6px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 4px;
+            right: 4px;
+        }
+
+        .bird-beak {
+            width: 8px;
+            height: 4px;
+            background: #FFA500;
+            border-radius: 2px;
+            position: absolute;
+            top: 8px;
+            right: -4px;
+        }
+
+        .bird-wing {
+            width: 25px;
+            height: 15px;
+            background: #FF5252;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            top: 5px;
+            left: 8px;
+            transform-origin: center bottom;
+            animation: wingFlap 0.4s ease-in-out infinite alternate;
+        }
+
+        .bird-leg {
+            width: 3px;
+            height: 15px;
+            background: #FFA500;
+            position: absolute;
+            bottom: -15px;
+        }
+
+        .bird-leg.left {
+            left: 12px;
+            transform: rotate(-5deg);
+        }
+
+        .bird-leg.right {
+            right: 12px;
+            transform: rotate(5deg);
+        }
+
+        .bird-foot {
+            width: 8px;
+            height: 3px;
+            background: #FFA500;
+            border-radius: 2px;
+            position: absolute;
+            bottom: -3px;
+        }
+
+        .shadow {
+            width: 30px;
+            height: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: shadowScale 0.6s ease-in-out infinite alternate;
+        }
+
+        /* Анимации */
+        @keyframes jump {
+            0% {
+                bottom: 110px;
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            50% {
+                bottom: 250px;
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            100% {
+                bottom: 110px;
+                animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        }
+
+        @keyframes bodyTilt {
+            0% {
+                transform: rotate(-2deg);
+            }
+            100% {
+                transform: rotate(2deg);
+            }
+        }
+
+        @keyframes wingFlap {
+            0% {
+                transform: rotate(-10deg) scaleY(0.8);
+            }
+            100% {
+                transform: rotate(20deg) scaleY(1.2);
+            }
+        }
+
+        @keyframes shadowScale {
+            0% {
+                transform: translateX(-50%) scale(0.8);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.1;
+            }
+        }
+
+        @keyframes lookAround {
+            0%, 80% {
+                transform: rotate(0deg);
+            }
+            85% {
+                transform: rotate(15deg);
+            }
+            90% {
+                transform: rotate(-10deg);
+            }
+            95% {
+                transform: rotate(5deg);
+            }
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Элементы окружения */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+        }
+
+        .cloud1 {
+            width: 80px;
+            height: 40px;
+            top: 50px;
+            left: 20%;
+            animation: cloudMove 20s linear infinite;
+        }
+
+        .cloud2 {
+            width: 60px;
+            height: 30px;
+            top: 80px;
+            right: 25%;
+            animation: cloudMove 25s linear infinite reverse;
+        }
+
+        @keyframes cloudMove {
+            0% {
+                transform: translateX(-100px);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px));
+            }
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+
+        .jump-counter {
+            margin-left: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button onclick="startJumping()">Старт</button>
+        <button onclick="stopJumping()">Стоп</button>
+        <button onclick="resetCounter()">Сброс</button>
+        <span class="jump-counter">Прыжков: <span id="jumpCount">0</span></span>
+    </div>
+
+    <div class="scene">
+        <!-- Облака -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        
+        <!-- Земля и трава -->
+        <div class="ground"></div>
+        <div class="grass"></div>
+        
+        <!-- Тень -->
+        <div class="shadow" id="birdShadow"></div>
+        
+        <!-- Птичка -->
+        <div class="bird" id="bird">
+            <div class="bird-body">
+                <div class="bird-head">
+                    <div class="bird-eye"></div>
+                    <div class="bird-beak"></div>
+                </div>
+                <div class="bird-wing"></div>
+            </div>
+            <div class="bird-leg left">
+                <div class="bird-foot"></div>
+            </div>
+            <div class="bird-leg right">
+                <div class="bird-foot"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let jumpInterval;
+        let jumpCount = 0;
+        const bird = document.getElementById('bird');
+        const birdShadow = document.getElementById('birdShadow');
+        const jumpCountElement = document.getElementById('jumpCount');
+
+        function startJumping() {
+            if (jumpInterval) return;
+            
+            jumpInterval = setInterval(() => {
+                // Случайная высота прыжка (180-280px)
+                const jumpHeight = 110 + Math.random() * 170;
+                
+                // Случайная длительность прыжка (400-800ms)
+                const jumpDuration = 400 + Math.random() * 400;
+                
+                performJump(jumpHeight, jumpDuration);
+                
+                // Случайные паузы между прыжками
+                clearInterval(jumpInterval);
+                jumpInterval = setInterval(() => {
+                    performJump(jumpHeight, jumpDuration);
+                }, jumpDuration + 200 + Math.random() * 1000);
+                
+            }, 100);
+        }
+
+        function performJump(height, duration) {
+            // Анимация прыжка
+            bird.style.transition = `bottom ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
+            bird.style.bottom = `${height}px`;
+            
+            // Анимация тени
+            birdShadow.style.animation = 'none';
+            setTimeout(() => {
+                birdShadow.style.animation = `shadowScale ${duration}ms ease-in-out infinite alternate`;
+            }, 10);
+            
+            // Случайный поворот головы иногда
+            if (Math.random() > 0.7) {
+                const head = bird.querySelector('.bird-head');
+                head.style.animation = 'lookAround 1s ease-in-out';
+                setTimeout(() => {
+                    head.style.animation = '';
+                }, 1000);
+            }
+            
+            // Возврат в исходное положение
+            setTimeout(() => {
+                bird.style.bottom = '110px';
+                jumpCount++;
+                jumpCountElement.textContent = jumpCount;
+            }, duration / 2);
+        }
+
+        function stopJumping() {
+            clearInterval(jumpInterval);
+            jumpInterval = null;
+            bird.style.bottom = '110px';
+            bird.style.transition = 'bottom 0.3s ease-out';
+        }
+
+        function resetCounter() {
+            jumpCount = 0;
+            jumpCountElement.textContent = jumpCount;
+        }
+
+        // Автоматический старт через 1 секунду
+        setTimeout(startJumping, 1000);
+
+        // Добавляем интерактивность - прыжок по клику
+        bird.addEventListener('click', () => {
+            performJump(250, 500);
+        });
+
+        // Добавляем физику приземления
+        bird.addEventListener('transitionend', (e) => {
+            if (e.propertyName === 'bottom' && bird.style.bottom === '110px') {
+                // Легкое подрагивание при приземлении
+                bird.style.transform = 'translateX(-50%) scale(0.95)';
+                setTimeout(() => {
+                    bird.style.transform = 'translateX(-50%) scale(1)';
+                }, 100);
+            }
+        });
+    </script>
+</body>
+</html>
