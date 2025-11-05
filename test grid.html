@@ -1,132 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Тест</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Grid</title>
     <style>
-       .parent {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 15px;
-}
-    
+        /* Сброс стилей для grid */
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 20px;
+        }
 
-.div2 {
-    grid-column: span 3 / span 3;
-}
+        /* Стили для больших экранов */
+        .div2 {
+            grid-column: span 3;
+        }
 
-.div3 {
-    grid-row-start: 2;
-}
+        .div3, .div4, .div5, .div6 {
+            grid-row: 2;
+        }
 
-.div4 {
-    grid-row-start: 2;
-}
+        .div7 {
+            grid-column: span 2;
+        }
 
-.div5 {
-    grid-row-start: 2;
-}
+        .div8 {
+            grid-column: 3;
+            grid-row: 3;
+        }
 
-.div6 {
-    grid-row-start: 2;
-}
+        .div9 {
+            grid-column: 4;
+            grid-row: 3;
+        }
 
-.div7 {
-    grid-column: span 2 / span 2;
-}
+        /* Медиа-запрос для планшетов */
+        @media (max-width: 800px) {
+            .parent {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            .div2,
+            .div3, 
+            .div4, 
+            .div5, 
+            .div6, 
+            .div7, 
+            .div8, 
+            .div9 {
+                grid-column: auto !important;
+                grid-row: auto !important;
+            }
+        }
 
-.div8 {
-    grid-column-start: 3;
-    grid-row-start: 3;
-}
+        /* Медиа-запрос для мобильных */
+        @media (max-width: 576px) {
+            .parent {
+                grid-template-columns: 1fr !important;
+                gap: 15px;
+            }
+        }
 
-.div9 {
-    grid-column-start: 4;
-    grid-row-start: 3;
-}
+        /* Стили карточек */
+        .card {
+            height: 100%;
+            min-height: 200px;
+        }
         
+        /* Для наглядности - разные цвета карточек */
+        .div1 .card { background-color: #ffebee; }
+        .div2 .card { background-color: #e8f5e8; }
+        .div3 .card { background-color: #e3f2fd; }
+        .div4 .card { background-color: #fff3e0; }
+        .div5 .card { background-color: #f3e5f5; }
+        .div6 .card { background-color: #e0f2f1; }
+        .div7 .card { background-color: #fce4ec; }
+        .div8 .card { background-color: #e8eaf6; }
+        .div9 .card { background-color: #fff8e1; }
     </style>
 </head>
 <body>
-    <h1>Тест Grid (измените размер окна  ≤ 800Px)</h1>
+    <h1 class="text-center m-3">Тест Grid </h1>
     
+    <div class="parent">
+        <div class="div1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 1</h5>
+                    <p class="card-text">Содержимое карточки 1</p>
+                </div>
+            </div>
+        </div>
+        <div class="div2">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 2 </h5>
+                    <p class="card-text">Широкая карточка</p>
+                </div>
+            </div>
+        </div>
+        <div class="div3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 3</h5>
+                    <p class="card-text">Содержимое карточки 3</p>
+                </div>
+            </div>
+        </div>
+        <div class="div4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 4</h5>
+                    <p class="card-text">Содержимое карточки 4</p>
+                </div>
+            </div>
+        </div>
+        <div class="div5">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 5</h5>
+                    <p class="card-text">Содержимое карточки 5</p>
+                </div>
+            </div>
+        </div>
+        <div class="div6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 6</h5>
+                    <p class="card-text">Содержимое карточки 6</p>
+                </div>
+            </div>
+        </div>
+        <div class="div7">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 7 (span 2)</h5>
+                    <p class="card-text">Широкая карточка</p>
+                </div>
+            </div>
+        </div>
+        <div class="div8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 8</h5>
+                    <p class="card-text">Содержимое карточки 8</p>
+                </div>
+            </div>
+        </div>
+        <div class="div9">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Карточка 9</h5>
+                    <p class="card-text">Содержимое карточки 9</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<div class="parent">
-    <div class="div1"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div2"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div3"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div4"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div5"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div6"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div7"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div8"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-    <div class="div9"><div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div></div>
-</div>
+    <script>
+        // Скрипт для отладки - показывает текущую ширину экрана
+        function updateScreenSize() {
+            const width = window.innerWidth;
+            console.log(`Ширина экрана: ${width}px`);
+        }
+        
+        window.addEventListener('resize', updateScreenSize);
+        updateScreenSize(); // начальное значение
+    </script>
 </body>
 </html>
