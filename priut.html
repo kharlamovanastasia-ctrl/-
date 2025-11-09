@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощь животным - Лапа дружбы</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            padding-top: 20px;
+        }
+        .sidebar .nav-link {
+            color: #333;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #e9ecef;
+        }
+        .sidebar .nav-link.active {
+            background-color: #28a745;
+            color: white;
+        }
+        .content {
+            padding: 20px;
+        }
+        .animal-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            height: 380px; /* Фиксированная высота карточки */
+        }
+        .animal-card:hover {
+            transform: translateY(-5px);
+        }
+        .animal-card img {
+            height: 200px; /* Фиксированная высота изображения */
+            object-fit: cover; /* Обрезает изображение без искажений */
+            width: 100%;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                       url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?ixlib=rb-4.0.3') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .donate-btn {
+            background-color: #28a745;
+            border: none;
+            padding: 10px 30px;
+            font-size: 1.1em;
+        }
+        .donate-btn:hover {
+            background-color: #218838;
+        }
+        .about-image {
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        .stats-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Боковое меню -->
+            <div class="col-md-3 col-lg-2 sidebar">
+                <div class="text-center mb-4">
+                    <h4>Лапа дружбы</h4>
+                    <p class="text-muted">Помогаем вместе</p>
+                </div>
+                
+                <nav class="nav flex-column">
+                    <a class="nav-link active" href="#home">Главная</a>
+                    <a class="nav-link" href="#animals">Наши подопечные</a>
+                    <a class="nav-link" href="#help">Как помочь</a>
+                    <a class="nav-link" href="#volunteer">Волонтёрство</a>
+                    <a class="nav-link" href="#about">О приюте</a>
+                    <a class="nav-link" href="#contacts">Контакты</a>
+                </nav>
+
+                <div class="mt-4 p-3 bg-light rounded">
+                    <h6>Срочно нужна помощь</h6>
+                    <p class="small">Бездомные животные ждут вашей поддержки</p>
+                    <button class="btn btn-success btn-sm w-100 donate-btn">Помочь сейчас</button>
+                </div>
+            </div>
+
+            <!-- Основной контент -->
+            <div class="col-md-9 col-lg-10 content">
+                <!-- Герой секция -->
+                <section id="home">
+                    <div class="hero-section rounded">
+                        <h1 class="display-4">Дадим шанс каждому хвостику!</h1>
+                        <p class="lead">Помогаем бездомным животным найти дом и заботу</p>
+                        <button class="btn btn-success btn-lg donate-btn">Сделать пожертвование</button>
+                    </div>
+                </section>
+
+                <!-- Наши подопечные -->
+                <section id="animals" class="mb-5">
+                    <h2 class="mb-4">Наши подопечные</h2>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card animal-card">
+                                <img src="https://i.pinimg.com/originals/f4/a6/ed/f4a6ed02a7889f71d20a32af674940cc.jpg" class="card-img-top" alt="Собака">
+                                <div class="card-body">
+                                    <h5 class="card-title">Барсик</h5>
+                                    <p class="card-text">2 года, ласковый и игривый пёс. Ищет активных хозяев.</p>
+                                    <span class="badge bg-success">Ищет дом</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card animal-card">
+                                <img src="https://cdn1.youla.io/files/images/720_720_out/66/9c/669c078726aba5f5840a39d8-2.jpg" class="card-img-top" alt="Кошка">
+                                <div class="card-body">
+                                    <h5 class="card-title">Мурка</h5>
+                                    <p class="card-text">1 год, спокойная кошка. Любит тишину и ласку.</p>
+                                    <span class="badge bg-warning">На лечении</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card animal-card">
+                                <img src="https://i.pinimg.com/originals/6c/1f/15/6c1f15dc88efa505dc179a6206e16a83.jpg" class="card-img-top" alt="Щенок">
+                                <div class="card-body">
+                                    <h5 class="card-title">Рекс</h5>
+                                    <p class="card-text">4 месяца, щенок. Очень добрый и любознательный.</p>
+                                    <span class="badge bg-success">Ищет дом</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Как помочь -->
+                <section id="help" class="mb-5">
+                    <h2 class="mb-4">Как вы можете помочь</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">💰 Финансовая помощь</h5>
+                                    <p class="card-text">Любая сумма поможет купить корм и лекарства</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">🍗 Корм и лекарства</h5>
+                                    <p class="card-text">Привезти корм, наполнитель или медикаменты</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">🏠 Взять на передержку</h5>
+                                    <p class="card-text">Взять животное к себе на временное содержание</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title">📢 Распространение информации</h5>
+                                    <p class="card-text">Расскажите о нас в соцсетях</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Волонтёрство -->
+                <section id="volunteer" class="mb-5">
+                    <h2 class="mb-4">Стань волонтёром</h2>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <p>Мы всегда рады помощи в:</p>
+                            <ul>
+                                <li>Выгуле собак</li>
+                                <li>Уборке вольеров</li>
+                                <li>Организации мероприятий</li>
+                                <li>Фотографировании животных</li>
+                                <li>Транспортировке животных</li>
+                            </ul>
+                            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#volunteerForm">
+                                Заполнить анкету волонтёра
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- О приюте -->
+                <section id="about" class="mb-5">
+                    <h2 class="mb-4">О приюте "Лапа дружбы"</h2>
+                    
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <img src="https://cdn.profile.ru/wp-content/uploads/2021/05/1shutterstock_662918968.jpg" class="about-image w-100" alt="Наш приют">
+                        </div>
+                        <div class="col-md-6">
+                            <h3>Наша история</h3>
+                            <p>Всё началось в 2022 году, когда основатель приюта Анастасия Сергеевна нашла на улице раненого щенка. Не имея возможности оставить его у себя, но и не в силах пройти мимо, она начала искать ему дом. Так появилась идея создать место, где бездомные животные могли бы получить временный кров, лечение и шанс на новую жизнь.</p>
+                            <p>Сначала это была просто группа энтузиастов, которые размещали животных на своих балконах и в гаражах. Но с каждым спасённым хвостиком наша команда росла, и в 2024 году мы смогли арендовать первый вольер.</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-6 order-md-2">
+                            <img src="https://avatars.mds.yandex.net/get-altay/363317/2a00000160b9f06c17681e2b4cf4e99542eb/XXL_height" class="about-image w-100" alt="Первый вольер">
+                        </div>
+                        <div class="col-md-6 order-md-1">
+                            <h3>Наша миссия</h3>
+                            <p>Мы верим, что каждое животное заслуживает любви и заботы. Наша миссия — не просто спасать жизни, но и менять сознание людей, воспитывая ответственное отношение к домашним питомцам.</p>
+                            <p>Мы работаем по принципу "no-kill" — ни одно животное не усыпляется, кроме случаев несовместимых с жизнью заболеваний, причиняющих страдания.</p>
+                        </div>
+                    </div>
+
+                    <!-- Статистика -->
+                    <div class="row mb-5">
+                        <div class="col-12">
+                            <h3 class="text-center mb-4">Наши достижения за 2024 год</h3>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <p class="stats-number">127</p>
+                                <p class="stats-label">Спасённых животных</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <p class="stats-number">89</p>
+                                <p class="stats-label">Нашли дом</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <p class="stats-number">42</p>
+                                <p class="stats-label">Волонтёра</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <p class="stats-number">15</p>
+                                <p class="stats-label">Партнёров</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Наши принципы работы</h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><strong>Профессиональный уход:</strong> Все животные проходят ветеринарный осмотр и получают необходимое лечение</li>
+                                        <li><strong>Социализация:</strong> Мы работаем над адаптацией животных к жизни в семье</li>
+                                        <li><strong>Ответственное устройство:</strong> Тщательно проверяем будущих хозяев</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul>
+                                        <li><strong>Образовательные программы:</strong> Проводим уроки доброты в школах</li>
+                                        <li><strong>Прозрачность:</strong> Отчитываемся за каждое пожертвование</li>
+                                        <li><strong>Стерилизация:</strong> Все животные стерилизуются перед устройством в семьи</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Контакты -->
+                <section id="contacts">
+                    <h2 class="mb-4">Контакты</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Адрес приюта:</strong><br>г. Москва, ул. Добрая, д. 15</p>
+                            <p><strong>Телефон:</strong><br>+7 (999) 123-45-67</p>
+                            <p><strong>Email:</strong><br>help@animalhelp.ru</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Режим работы:</strong><br>Ежедневно с 9:00 до 18:00</p>
+                            <p><strong>Время для посещения:</strong><br>С 11:00 до 17:00</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно с анкетой волонтёра -->
+    <div class="modal fade" id="volunteerForm" tabindex="-1" aria-labelledby="volunteerFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="volunteerFormLabel">Анкета волонтёра</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="firstName" class="form-label">Имя *</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="lastName" class="form-label">Фамилия *</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Телефон *</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="experience" class="form-label">Опыт работы с животными</label>
+                            <textarea class="form-control" id="experience" rows="3" placeholder="Расскажите о вашем опыте с животными..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Чем хотели бы помочь? *</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="walking">
+                                <label class="form-check-label" for="walking">Выгул собак</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="cleaning">
+                                <label class="form-check-label" for="cleaning">Уборка вольеров</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="photography">
+                                <label class="form-check-label" for="photography">Фотографирование животных</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="transport">
+                                <label class="form-check-label" for="transport">Транспортировка животных</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="events">
+                                <label class="form-check-label" for="events">Организация мероприятий</label>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="availability" class="form-label">Когда вы свободны?</label>
+                            <select class="form-select" id="availability">
+                                <option selected>Выберите удобное время</option>
+                                <option value="weekdays">В будни</option>
+                                <option value="weekends">В выходные</option>
+                                <option value="flexible">В любое время</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="comments" class="form-label">Дополнительные комментарии</label>
+                            <textarea class="form-control" id="comments" rows="3" placeholder="Любая дополнительная информация..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-success">Отправить анкету</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
